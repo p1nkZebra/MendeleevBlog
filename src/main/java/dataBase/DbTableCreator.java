@@ -39,6 +39,12 @@ public class DbTableCreator {
                     + " ) ";
             stmt.executeUpdate(sql);
 
+            sql = "ALTER TABLE JAVA_TASK.POST "
+                    + " ADD CONSTRAINT FK_USER "
+                    + " FOREIGN KEY (USER_ID) REFERENCES USER (ID) MATCH FULL "
+                    + " ";
+            stmt.executeUpdate(sql);
+
             stmt.close();
             c.close();
         } catch (Exception e) {
