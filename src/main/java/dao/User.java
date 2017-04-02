@@ -13,7 +13,7 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    private Set<Post> posts = null;//new HashSet<Post>(0);
+    private Set<Post> posts = null;
 
     public User() {
 
@@ -37,7 +37,7 @@ public class User {
         this.id = id;
     }
 
-    @Column(name = "FIRST_NAME", length = 32, nullable = false, unique = false)
+    @Column(name = "FIRST_NAME", nullable = false, unique = false)
     public String getFirstName() {
         return firstName;
     }
@@ -46,7 +46,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    @Column(name = "LAST_NAME", length = 32, nullable = false, unique = false)
+    @Column(name = "LAST_NAME", nullable = false, unique = false)
     public String getLastName() {
         return lastName;
     }

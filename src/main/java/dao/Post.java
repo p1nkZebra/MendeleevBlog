@@ -7,17 +7,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "POST", schema = "JAVA_TASK")
 public class Post {
-    private long id;
+    private Long id;
     private User user;
+    private Long userId;
     private String title;
     private String publication;
 
     public Post() {
     }
 
-    public Post(long id, User user, String title, String publication) {
+    public Post(Long id, Long userId, String title, String publication) {
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.title = title;
         this.publication = publication;
     }
@@ -25,11 +26,11 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,7 +44,16 @@ public class Post {
         this.user = user;
     }
 
-    @Column(name = "TITLE", length = 100, nullable = false, unique = false)
+    @Transient
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    @Column(name = "TITLE", nullable = false, unique = false)
     public String getTitle() {
         return title;
     }
@@ -52,7 +62,7 @@ public class Post {
         this.title = title;
     }
 
-    @Column(name = "PUBLICATION", length = 500, nullable = false, unique = false)
+    @Column(name = "PUBLICATION", nullable = false, unique = false)
     public String getPublication() {
         return publication;
     }
@@ -66,6 +76,7 @@ public class Post {
         return new ToStringBuilder(this)
                 .append("id", id)
                 .append("user", user)
+                .append("userId", userId)
                 .append("title", title)
                 .append("publication", publication)
                 .toString();
