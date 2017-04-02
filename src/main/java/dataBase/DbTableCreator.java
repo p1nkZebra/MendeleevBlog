@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DbTableCreator {
 
-    public void create() {
+    public static void main(String[] args) {
         Connection c = null;
         Statement stmt = null;
         String sql = "";
@@ -25,23 +25,23 @@ public class DbTableCreator {
             sql = "CREATE TABLE IF NOT EXISTS JAVA_TASK.USER "
                     + " ( "
                     + " ID                      SERIAL PRIMARY KEY     NOT NULL, "
-                    + " FIRST_NAME              CHAR(32)            NOT NULL, "
-                    + " LAST_NAME               CHAR(32)            NOT NULL  "
+                    + " FIRST_NAME              VARCHAR(32)            NOT NULL, "
+                    + " LAST_NAME               VARCHAR(32)            NOT NULL  "
                     + " ) ";
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE IF NOT EXISTS JAVA_TASK.POST "
                     + " ( "
                     + " ID                      SERIAL PRIMARY KEY     NOT NULL, "
-                    + " USER_ID                 INT                 NOT NULL, "
-                    + " TITLE                   CHAR(100)           NOT NULL, "
-                    + " PUBLICATION             CHAR(500)           NOT NULL  "
+                    + " USER_ID                 INT                    NOT NULL, "
+                    + " TITLE                   VARCHAR(100)           NOT NULL, "
+                    + " PUBLICATION             VARCHAR(500)           NOT NULL  "
                     + " ) ";
             stmt.executeUpdate(sql);
 
             sql = "ALTER TABLE JAVA_TASK.POST "
                     + " ADD CONSTRAINT FK_USER "
-                    + " FOREIGN KEY (USER_ID) REFERENCES USER (ID) MATCH FULL "
+                    + " FOREIGN KEY (USER_ID) REFERENCES JAVA_TASK.USER (ID) MATCH FULL "
                     + " ";
             stmt.executeUpdate(sql);
 
@@ -52,7 +52,7 @@ public class DbTableCreator {
             System.err.println(e.getClass().getName()+": "+ e.getMessage());
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
+        System.out.println("Tables are created successfully");
     }
 
 }
