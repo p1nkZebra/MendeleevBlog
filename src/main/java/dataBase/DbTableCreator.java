@@ -33,6 +33,7 @@ public class DbTableCreator {
             sql = "CREATE TABLE IF NOT EXISTS JAVA_TASK.POST "
                     + " ( "
                     + " ID                      SERIAL PRIMARY KEY     NOT NULL, "
+                    + " DATE_TIME               TIMESTAMP              NOT NULL, "
                     + " USER_ID                 INT                    NOT NULL, "
                     + " TITLE                   VARCHAR(100)           NOT NULL, "
                     + " PUBLICATION             VARCHAR(500)           NOT NULL  "

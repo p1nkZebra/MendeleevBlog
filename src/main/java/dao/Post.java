@@ -1,6 +1,8 @@
 package dao;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -8,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "POST", schema = "JAVA_TASK")
 public class Post {
     private Long id;
+    private LocalDateTime dateTime;
     private User user;
     private Long userId;
     private String title;
@@ -32,6 +35,17 @@ public class Post {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Column(name = "DATE_TIME", nullable = false)
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+//    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTimeAsString")
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

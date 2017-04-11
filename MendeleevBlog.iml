@@ -55,5 +55,8 @@
     <orderEntry type="library" name="Maven: com.googlecode.genericdao:dao:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.genericdao:search:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.genericdao:search-hibernate:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: joda-time:joda-time:2.9.9" level="project" />
+    <orderEntry type="library" name="Maven: org.jadira.usertype:usertype.core:3.2.0.GA" level="project" />
+    <orderEntry type="library" name="Maven: org.jadira.usertype:usertype.spi:3.2.0.GA" level="project" />
   </component>
 </module>
