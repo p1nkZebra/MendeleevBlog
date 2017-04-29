@@ -1,4 +1,4 @@
-package service;
+package controller.service;
 
 import dal.UserDao;
 import dao.User;
@@ -15,5 +15,18 @@ public class UserService {
 
     public void saveNewUser(User user) {
 
+    }
+
+    public List<User> findAll() {
+        return userDao.findAll();
+    }
+
+    public User findById(Long id) {
+        return userDao.findById(id);
+    }
+
+    public void update(User user) {
+
+        userDao.update(user);
     }
 }

@@ -13,17 +13,12 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
+    private String login;
+    private String password;
     private Set<Post> posts = null;
 
     public User() {
 
-    }
-
-    public User(Long id, String firstName, String lastName, Set<Post> posts) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.posts = posts;
     }
 
     @Id
@@ -37,7 +32,7 @@ public class User {
         this.id = id;
     }
 
-    @Column(name = "FIRST_NAME", nullable = false, unique = false)
+    @Column(name = "FIRST_NAME", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -46,13 +41,30 @@ public class User {
         this.firstName = firstName;
     }
 
-    @Column(name = "LAST_NAME", nullable = false, unique = false)
+    @Column(name = "LAST_NAME", nullable = false)
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Column(name = "LOGIN", nullable = false, unique = true)
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    @Column(name = "PASSWORD", nullable = false)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
@@ -70,7 +82,8 @@ public class User {
                 .append("id", id)
                 .append("firstName", firstName)
                 .append("lastName", lastName)
-                .append("post", posts)
+                .append("login", login)
+                .append("password", password)
                 .toString();
     }
 }

@@ -16,18 +16,26 @@ public class PostRowMapper extends BeanPropertyRowMapper {
         super(mappedClass);
     }
 
-    public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public Object mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Post post = new Post();
-        post.setId(rs.getLong("ID"));
 
-        String stringDateTime = rs.getString("DATE_TIME");
+        Long dbValueId = resultSet.getLong("ID");
+        post.setId(dbValueId);
+
+        String stringDateTime = resultSet.getString("DATE_TIME");
         DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-DD HH:mm:SS");
         LocalDateTime localDateTime = formatter.parseLocalDateTime(stringDateTime);
         post.setDateTime(localDateTime);
 
-        post.setUserId(rs.getLong("USER_ID"));
-        post.setTitle(rs.getString("TITLE"));
-        post.setPublication(rs.getString("PUBLICATION"));
+        Long dbValueUserId = resultSet.getLong("USER_ID");
+        post.setUserId(dbValueUserId);
+
+        String dbValueTitle = resultSet.getString("TITLE");
+        post.setTitle(dbValueTitle);
+
+        String dbValuePublication = resultSet.getString("PUBLICATION");
+        post.setPublication(dbValuePublication);
+
         return post;
     }
 

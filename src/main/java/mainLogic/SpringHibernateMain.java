@@ -14,12 +14,12 @@ import java.util.List;
 
 public class SpringHibernateMain {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring4.xml");
-		
-		UserDao userDao = context.getBean(UserDao.class);
-		PostDao postDao = context.getBean(PostDao.class);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring4.xml");
+
+        UserDao userDao = context.getBean(UserDao.class);
+        PostDao postDao = context.getBean(PostDao.class);
 
 //        putNewRecordsToDataBase(userDao, postDao);
 
@@ -76,8 +76,8 @@ public class SpringHibernateMain {
 
 
         context.close();
-		
-	}
+
+    }
 
     private static List<TitlePageData> findUserPublications(
             UserDao userDao,
@@ -100,9 +100,9 @@ public class SpringHibernateMain {
             String firstName,
             String lastName
     ) {
-	    User user = userDao.findByFirstNameAndLastName(firstName, lastName);
+        User user = userDao.findByFirstNameAndLastName(firstName, lastName);
 
-	    return user;
+        return user;
     }
 
     private static PostPageData findSinglePublication(
@@ -113,10 +113,10 @@ public class SpringHibernateMain {
         Post post = postDao.findById(postId);
 
 
-	    PostPageData data = new PostPageData();
+        PostPageData data = new PostPageData();
 
-	    LocalDateTime dateTime = post.getDateTime();
-	    data.setDateTime(dateTime);
+        LocalDateTime dateTime = post.getDateTime();
+        data.setDateTime(dateTime);
 
         Long userId = post.getUserId();
         User user = userDao.findById(userId);
@@ -127,10 +127,10 @@ public class SpringHibernateMain {
         data.setTitle(title);
 
         String publicationText = post.getPublication();
-	    data.setPublication(publicationText);
+        data.setPublication(publicationText);
 
 
-	    return data;
+        return data;
     }
 
     private static List<TitlePageData> findMainPageDataForPeriod(
@@ -150,7 +150,7 @@ public class SpringHibernateMain {
     }
 
     private static List<TitlePageData> openMainPage(PostDao postDao, UserDao userDao) {
-	    List<Post> postList = postDao.findFirstFifty();
+        List<Post> postList = postDao.findFirstFifty();
 
         List<TitlePageData> titlePageData = mapToTitlePageData(postList, userDao);
 
@@ -182,6 +182,8 @@ public class SpringHibernateMain {
         User newUser1 = new User();
         newUser1.setFirstName("Jim");
         newUser1.setLastName("Moriarty");
+        newUser1.setLogin("sweaty");
+        newUser1.setPassword("123");
         userDao.save(newUser1);
 
         Post newPost1 = new Post();
@@ -203,6 +205,8 @@ public class SpringHibernateMain {
         User newUser2 = new User();
         newUser2.setFirstName("James");
         newUser2.setLastName("Bond");
+        newUser2.setLogin("blondy");
+        newUser2.setPassword("123");
         userDao.save(newUser2);
 
         Post newPost3 = new Post();
@@ -217,6 +221,8 @@ public class SpringHibernateMain {
         User newUser3 = new User();
         newUser3.setFirstName("Dima");
         newUser3.setLastName("Mendeleev");
+        newUser3.setLogin("smarty");
+        newUser3.setPassword("123");
         userDao.save(newUser3);
 
         Post newPost4 = new Post();

@@ -26,7 +26,9 @@ public class DbTableCreator {
                     + " ( "
                     + " ID                      SERIAL PRIMARY KEY     NOT NULL, "
                     + " FIRST_NAME              VARCHAR(32)            NOT NULL, "
-                    + " LAST_NAME               VARCHAR(32)            NOT NULL  "
+                    + " LAST_NAME               VARCHAR(32),  "
+                    + " LOGIN                   VARCHAR(10)            NOT NULL,  "
+                    + " PASSWORD                VARCHAR(15)            NOT NULL  "
                     + " ) ";
             stmt.executeUpdate(sql);
 

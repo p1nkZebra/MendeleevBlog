@@ -19,13 +19,6 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id, Long userId, String title, String publication) {
-        this.id = id;
-        this.userId = userId;
-        this.title = title;
-        this.publication = publication;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
@@ -39,7 +32,6 @@ public class Post {
 
     @Column(name = "DATE_TIME", nullable = false)
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-//    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTimeAsString")
     public LocalDateTime getDateTime() {
         return dateTime;
     }

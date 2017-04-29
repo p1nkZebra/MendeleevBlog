@@ -33,6 +33,16 @@ public class UserDaoImpl implements UserDao {
         session.close();
     }
 
+    public void update(User entity) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        session.update(entity);
+
+        tx.commit();
+        session.close();
+    }
+
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
         Session session = this.sessionFactory.openSession();
@@ -73,4 +83,6 @@ public class UserDaoImpl implements UserDao {
 
         return user;
     }
+
+
 }

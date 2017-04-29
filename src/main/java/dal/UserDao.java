@@ -12,4 +12,6 @@ public interface UserDao {
     User findByFirstNameAndLastName(String firstName, String lastName);
 
     User findById(Long userId);
+
+    void update(User entity);
 }
