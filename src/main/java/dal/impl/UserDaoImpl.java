@@ -43,6 +43,38 @@ public class UserDaoImpl implements UserDao {
         session.close();
     }
 
+    public User findByLoginPassword(String login, String password) {
+        JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+
+        String countSql = ""
+                + " SELECT COUNT(*) FROM JAVA_TASK.USER "
+                + " WHERE LOGIN = ? "
+                + " AND PASSWORD = ? ";
+
+        Integer count = jdbc.queryForObject(
+                countSql,
+                new Object[] { login, password },
+                Integer.class
+        );
+
+        if (count == 0) {
+            return null;
+        } else {
+            String findUserSql = ""
+                    + " SELECT * FROM JAVA_TASK.USER "
+                    + " WHERE LOGIN = ? "
+                    + " AND PASSWORD = ? ";
+
+            User user = (User) jdbc.queryForObject(
+                    findUserSql,
+                    new Object[] { login, password },
+                    new UserRowMapper(User.class)
+            );
+
+            return user;
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
         Session session = this.sessionFactory.openSession();

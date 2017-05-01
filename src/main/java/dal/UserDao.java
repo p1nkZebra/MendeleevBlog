@@ -14,4 +14,6 @@ public interface UserDao {
     User findById(Long userId);
 
     void update(User entity);
+
+    User findByLoginPassword(String login, String password);
 }
